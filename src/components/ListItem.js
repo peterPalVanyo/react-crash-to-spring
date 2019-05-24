@@ -8,7 +8,7 @@ export class ListItem extends Component {
             <div style={listStyle}>
                 <p style={ pStyle }>{ this.props.list.groupId }</p>
             </div>
-        )
+    )
     }
 }
 
@@ -26,7 +26,7 @@ const listStyle = {
     padding: '10px',
     borderBottom: '1px #ccc dotted',
     marginLeft: '50%',
-    opacity: 0.6
+    opacity: 0.9
 }
 
 export default ListItem

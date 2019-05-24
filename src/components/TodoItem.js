@@ -12,7 +12,7 @@ export class TodoItem extends Component {
             borderBottom: '1px #ccc dotted',
             textDecoration: this.props.todo.completed ? 'line-through' : 'none',
             marginRight: '50%',
-            opacity: 0.8
+            opacity: 0.9
         }
     }
 
