@@ -11,7 +11,8 @@ export class TodoItem extends Component {
             padding: '10px',
             borderBottom: '1px #ccc dotted',
             textDecoration: this.props.todo.completed ? 'line-through' : 'none',
-            marginRight: '50%'
+            marginRight: '50%',
+            opacity: 0.8
         }
     }
 

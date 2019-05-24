@@ -25,14 +25,14 @@ a{
 .btn{
     display: inline-block;
     border: none;
-    background: #555;
+    background: #93B8B4;
     color: #fff;
     padding: 7px 20px;
     cursor: pointer;
 }
 
 .btn:hover{
-    background: #666;
+    background: #B34234;
 }
 
 img{
