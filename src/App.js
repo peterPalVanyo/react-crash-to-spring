@@ -5,9 +5,7 @@ import ToLIsts from './components/ToLists';
 import AddTodo from './components/AddTodo';
 import AddList from './components/AddList';
 import Header from './components/layout/Header';
-import About from './components/pages/About';
 import Welcome from './components/pages/Welcome';
-import uuid from 'uuid';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import axios from 'axios';
 
