@@ -6,7 +6,7 @@ export class AddList extends Component {
         groupId:''
     }
 
-    //setting the value whatever we type in, title: e.target.value
+    //setting the value whatever we type in, name: e.target.value
     onChange = (e) => this.setState({[e.target.name]: e.target.value});
 
     //prevent from automatically submit and call props method

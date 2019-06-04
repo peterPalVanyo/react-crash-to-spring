@@ -17,22 +17,22 @@ class App extends Component {
     state={
         todos:[{
             id: 1,
-            title: 'soap',
+            name: 'soap',
             completed: false
             },
             {
                 id: 2,
-                title: 'towel',
+                name: 'towel',
                 completed: false
             },
             {
                 id: 3,
-                title: 'bred',
+                name: 'bred',
                 completed: false
             },
             {
                 id: 4,
-                title: 'vine',
+                name: 'vine',
                 completed: false
             },],
         tolists:[{
@@ -69,9 +69,9 @@ class App extends Component {
     // add new item
     // the face json version
     //http://192.168.160.159:8080/product/add
-    addTodo = (title) => {
+    addTodo = (name) => {
         axios.post("http://localhost:8080/todos", {
-            title: title
+            name: name
         }, {headers:{'Content-Type': 'application/json'}})
             .then(res => this.setState({todos:
                     [...this.state.todos, res.data]}));
@@ -89,10 +89,10 @@ class App extends Component {
                     [...this.state.tolists, res.data]}));
     }
 
-    // addTodo = (title) => {
+    // addTodo = (name) => {
     //     const newTodo = {
     //         id: uuid.v4(),
-    //         title,
+    //         name,
     //         completed: false
     //     }
     //     this.setState({ todos: [...this.state.todos, newTodo]});
@@ -128,9 +128,9 @@ class App extends Component {
 
                         <Route path="/about" render={props => (
                             <React.Fragment>
-                            <AddList addList={this.addList}/>
-                            <ToLIsts tolists={this.state.tolists}/>
-                        </React.Fragment>
+                                <AddList addList={this.addList}/>
+                                <ToLIsts tolists={this.state.tolists}/>
+                            </React.Fragment>
                         )}/>
 
                     </div>
