@@ -50,10 +50,11 @@ class App extends Component {
             ]
     }
 
-    // componentDidMount() {
-    //     axios.get('https://jsonplaceholder.typicode.com/todos?_limit=10')
-    //         .then(res => this.setState({ todos: res.data}))
-    // }
+    componentDidMount() {
+        console.log("we start here");
+        axios.get('http://localhost:8080/shopitem/exist')
+            .then(res => this.setState({ todos: res.data}))
+    }
 
     //TOGGLE COMPLETE
     markComplete = (id) => {
@@ -70,7 +71,7 @@ class App extends Component {
     // the face json version
     //http://192.168.160.159:8080/product/add
     addTodo = (name) => {
-        axios.post("http://localhost:8080/todos", {
+        axios.post("http://localhost:8080/shopitem", {
             name: name
         }, {headers:{'Content-Type': 'application/json'}})
             .then(res => this.setState({todos:
@@ -126,7 +127,7 @@ class App extends Component {
                         {/*<Route path="/about" component={About}/>*/}
                         <Route path="/welcome" component={Welcome}/>
 
-                        <Route path="/about" render={props => (
+                        <Route path="/shops" render={props => (
                             <React.Fragment>
                                 <AddList addList={this.addList}/>
                                 <ToLIsts tolists={this.state.tolists}/>
