@@ -6,7 +6,7 @@ export class ListItem extends Component {
 
         return(
             <div style={listStyle}>
-                <p style={ pStyle }>{ this.props.list.groupId }</p>
+                <p style={ pStyle }>{ this.props.list.name }</p>
             </div>
     )
     }

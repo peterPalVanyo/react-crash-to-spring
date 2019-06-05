@@ -33,17 +33,17 @@ class App extends Component {
                 name: 'vine',
                 completed: false
             },],
-        tolists:[{
+        toshops:[{
             id: 1,
-            groupId: 'FMCG',
+            name: 'FMCG',
         },
             {
                 id: 2,
-                groupId: 'Travel',
+                name: 'Travel',
             },
             {
                 id: 3,
-                groupId: 'Food',
+                name: 'Food',
             },
             ]
     }
@@ -80,12 +80,12 @@ class App extends Component {
     //here the groupid and the url are correct
     //http://192.168.160.130:8080/shopping-list/add
 
-    addList = (groupId) => {
-        axios.post("http://localhost:8080/tolists", {
-            groupId: groupId
+    addList = (name) => {
+        axios.post("http://localhost:8080/shops", {
+            name: name
         }, {headers:{'Content-Type': 'application/json'}})
-            .then(res => this.setState({tolists:
-                    [...this.state.tolists, res.data]}));
+            .then(res => this.setState({toshops:
+                    [...this.state.toshops, res.data]}));
     }
 
     // addTodo = (name) => {
@@ -128,7 +128,7 @@ class App extends Component {
                         <Route path="/shops" render={props => (
                             <React.Fragment>
                                 <AddList addList={this.addList}/>
-                                <ToLIsts tolists={this.state.tolists}/>
+                                <ToLIsts tolists={this.state.toshops}/>
                             </React.Fragment>
                         )}/>
 
