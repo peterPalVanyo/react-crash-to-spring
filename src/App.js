@@ -91,6 +91,10 @@ class App extends Component {
                     [...this.state.toshops, res.data]}));
     }
 
+    // editShop = () => {
+    //     console.log("hello");
+    // }
+
     // addTodo = (name) => {
     //     const newTodo = {
     //         id: uuid.v4(),
@@ -131,7 +135,7 @@ class App extends Component {
                         <Route path="/shops" render={props => (
                             <React.Fragment>
                                 <AddList addList={this.addList}/>
-                                <ToLIsts tolists={this.state.toshops}/>
+                                <ToLIsts tolists={this.state.toshops} editShop={this.editShop}/>
                             </React.Fragment>
                         )}/>
 
