@@ -18,12 +18,12 @@ export class TodoItem extends Component {
 
 
     render() {
-        const {id, title} = this.props.todo;
+        const {id, name} = this.props.todo;
         return(
             <div style={ this.getStyle() }>
                 <p>
                     <input type="checkbox" onChange={ this.props.markComplete.bind(this, id) }/> {' '}
-                    { title }
+                    { name }
                     <button style={btnStyle} onClick={this.props.delTodo.bind(this, id) }>x</button>
                 </p>
             </div>

@@ -17,22 +17,22 @@ class App extends Component {
     state={
         todos:[{
             id: 1,
-            title: 'soap',
+            name: 'soap',
             completed: false
             },
             {
                 id: 2,
-                title: 'towel',
+                name: 'towel',
                 completed: false
             },
             {
                 id: 3,
-                title: 'bred',
+                name: 'bred',
                 completed: false
             },
             {
                 id: 4,
-                title: 'vine',
+                name: 'vine',
                 completed: false
             },],
         tolists:[{
@@ -50,9 +50,10 @@ class App extends Component {
             ]
     }
 
-     componentDidMount() {
-         axios.get('http://localhost:8080/demo/products')
-             .then(res => this.setState({ todos: res.data}))
+    componentDidMount() {
+        console.log("we start here");
+        axios.get('http://localhost:8080/shopitem/exist')
+            .then(res => this.setState({ todos: res.data}))
     }
 
     //TOGGLE COMPLETE
@@ -69,9 +70,9 @@ class App extends Component {
     // add new item
     // the face json version
     //http://192.168.160.159:8080/product/add
-    addTodo = (title) => {
-        axios.post("http://localhost:8080/product/add", {
-            title: title
+    addTodo = (name) => {
+        axios.post("http://localhost:8080/shopitem", {
+            name: name
         }, {headers:{'Content-Type': 'application/json'}})
             .then(res => this.setState({todos:
                     [...this.state.todos, res.data]}));
@@ -89,10 +90,10 @@ class App extends Component {
                     [...this.state.tolists, res.data]}));
     }
 
-    // addTodo = (title) => {
+    // addTodo = (name) => {
     //     const newTodo = {
     //         id: uuid.v4(),
-    //         title,
+    //         name,
     //         completed: false
     //     }
     //     this.setState({ todos: [...this.state.todos, newTodo]});
@@ -126,11 +127,11 @@ class App extends Component {
                         {/*<Route path="/about" component={About}/>*/}
                         <Route path="/welcome" component={Welcome}/>
 
-                        <Route path="/about" render={props => (
+                        <Route path="/shops" render={props => (
                             <React.Fragment>
-                            <AddList addList={this.addList}/>
-                            <ToLIsts tolists={this.state.tolists}/>
-                        </React.Fragment>
+                                <AddList addList={this.addList}/>
+                                <ToLIsts tolists={this.state.tolists}/>
+                            </React.Fragment>
                         )}/>
 
                     </div>
