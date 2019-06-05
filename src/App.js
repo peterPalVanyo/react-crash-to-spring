@@ -5,9 +5,7 @@ import ToLIsts from './components/ToLists';
 import AddTodo from './components/AddTodo';
 import AddList from './components/AddList';
 import Header from './components/layout/Header';
-import About from './components/pages/About';
 import Welcome from './components/pages/Welcome';
-import uuid from 'uuid';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import axios from 'axios';
 
@@ -15,45 +13,61 @@ import axios from 'axios';
 class App extends Component {
 
     state={
-        todos:[{
+        todos: {lineItems: [{
             id: 1,
-            name: 'soap',
+            product: {
+                id: 0,
+                name: 'towel'
+            },
             completed: false
             },
             {
                 id: 2,
-                name: 'towel',
+                product: {
+                    id: 1,
+                    name: 'towel'
+                },
                 completed: false
             },
             {
                 id: 3,
-                name: 'bred',
+                product: {
+                    id: 2,
+                    name: 'towel'
+                },
                 completed: false
             },
             {
                 id: 4,
-                name: 'vine',
+                product: {
+                    id: 3,
+                    name: 'towel'
+                },
                 completed: false
-            },],
-        tolists:[{
+            },],},
+        toshops:[{
             id: 1,
-            groupId: 'FMCG',
+            name: 'FMCG',
         },
             {
                 id: 2,
-                groupId: 'Travel',
+                name: 'Travel',
             },
             {
                 id: 3,
-                groupId: 'Food',
+                name: 'Food',
             },
             ]
     }
 
     componentDidMount() {
-        console.log("we start here");
-        axios.get('http://localhost:8080/shopitem/exist')
-            .then(res => this.setState({ todos: res.data}))
+        axios.get('http://localhost:8080/shopping-list/all')
+            .then(res => {
+                this.setState({ todos: res.data });
+                console.log(this.state.todos);
+            });
+        axios.get('http://localhost:8080/shop/all')
+            .then(res => this.setState({ toshops: res.data}));
     }
 
     //TOGGLE COMPLETE
@@ -71,24 +85,34 @@ class App extends Component {
     // the face json version
     //http://192.168.160.159:8080/product/add
     addTodo = (name) => {
-        axios.post("http://localhost:8080/shopitem", {
-            name: name
+        axios.post("http://localhost:8080/line-item/add", {
+            shoppingList: this.state.todos,
+            quantity: 2,
+            product: {name: name}
         }, {headers:{'Content-Type': 'application/json'}})
             .then(res => this.setState({todos:
-                    [...this.state.todos, res.data]}));
+                   {lineItems: [...this.state.todos.lineItems, res.data]}}));
     }
 
 
     //here the groupid and the url are correct
     //http://192.168.160.130:8080/shopping-list/add
 
-    addList = (groupId) => {
-        axios.post("http://localhost:8080/tolists", {
-            groupId: groupId
+    addList = (name, address) => {
+        console.log(address);
+        axios.post("http://localhost:8080/shop/add", {
+            name: name,
+            address: address,
+            openingHours: [],
+            tags: []
         }, {headers:{'Content-Type': 'application/json'}})
-            .then(res => this.setState({tolists:
-                    [...this.state.tolists, res.data]}));
+            .then(res => this.setState({toshops:
+                    [...this.state.toshops, res.data]}));
     }
+
+    // editShop = () => {
+    //     console.log("hello");
+    // }
 
     // addTodo = (name) => {
     //     const newTodo = {
@@ -121,7 +145,7 @@ class App extends Component {
                         <Route exact path="/" render={props => (
                             <React.Fragment>
                                 <AddTodo addTodo={this.addTodo}/>
-                                <Todos todos={this.state.todos} markComplete={this.markComplete} delTodo={this.delTodo} />
+                                <Todos todos={this.state.todos.lineItems} markComplete={this.markComplete} delTodo={this.delTodo} />
                             </React.Fragment>
                             )} />
                         {/*<Route path="/about" component={About}/>*/}
@@ -130,7 +154,7 @@ class App extends Component {
                         <Route path="/shops" render={props => (
                             <React.Fragment>
                                 <AddList addList={this.addList}/>
-                                <ToLIsts tolists={this.state.tolists}/>
+                                <ToLIsts tolists={this.state.toshops} editShop={this.editShop}/>
                             </React.Fragment>
                         )}/>
 

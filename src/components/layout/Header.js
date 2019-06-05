@@ -15,7 +15,7 @@ const headerStyle = {
     color: '#fff',
     textAlign: 'center',
     padding: '10px',
-    opacity: 0.7
+    opacity: 0.9
 }
 
 const fontStyle = {

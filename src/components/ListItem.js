@@ -2,11 +2,18 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
 export class ListItem extends Component {
-    render() {
 
+    // onSubmit = (e) => {
+    //     e.preventDefault();
+    //     this.props.editShop;
+    // }
+
+    render() {
+        const {id, name, address} = this.props.list;
         return(
             <div style={listStyle}>
-                <p style={ pStyle }>{ this.props.list.groupId }</p>
+                <p style={ pStyle }>{ name }</p>
+                <input type="submit" value="edit" className="btn" style={{flex: '1'}}/>
             </div>
     )
     }
@@ -18,7 +25,7 @@ ListItem.propTypes = {
 
 const pStyle = {
     textAlign: 'center',
-    opacity: 1
+    opacity: 1,
 }
 
 const listStyle = {
