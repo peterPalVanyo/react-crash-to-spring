@@ -49,9 +49,10 @@ class App extends Component {
     }
 
     componentDidMount() {
-        console.log("we start here");
         axios.get('http://localhost:8080/shopitem/exist')
-            .then(res => this.setState({ todos: res.data}))
+            .then(res => this.setState({ todos: res.data}));
+        axios.get('http://localhost:8080/shops/exist')
+            .then(res => this.setState({ toshops: res.data}));
     }
 
     //TOGGLE COMPLETE

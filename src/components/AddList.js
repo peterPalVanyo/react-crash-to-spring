@@ -21,9 +21,8 @@ export class AddList extends Component {
 
             <form onSubmit={this.onSubmit} style={{ display: 'flex' }}>
                 <input type="text" name="name" style= {{ flex: '10', padding: '5px' }}
-                       placeholder="Add new list..." value={ this.state.name} onChange={this.onChange}/>
+                       placeholder="Add new shop..." value={ this.state.name} onChange={this.onChange}/>
                 <input type="submit" value="Submit" className="btn" style={{ flex: '1' }}/>
-
             </form>
         )
     }
