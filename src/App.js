@@ -81,9 +81,11 @@ class App extends Component {
     //here the groupid and the url are correct
     //http://192.168.160.130:8080/shopping-list/add
 
-    addList = (name) => {
+    addList = (name, address) => {
+        console.log(address);
         axios.post("http://localhost:8080/shops", {
-            name: name
+            name: name,
+            address: address
         }, {headers:{'Content-Type': 'application/json'}})
             .then(res => this.setState({toshops:
                     [...this.state.toshops, res.data]}));
